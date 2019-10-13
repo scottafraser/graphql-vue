@@ -63,6 +63,7 @@ export default {
       valid: false,
       firstName: '',
       lastName: '',
+      error: null,
       nameRules: [
         v => !!v || 'Name is required',
         v => v.length <= 10 || 'Name must be less than 10 characters',
@@ -97,8 +98,7 @@ export default {
   },
   methods: {
     createContact(firstName, lastName, email) {
-      debugger
-      console.log(`Create contact: ${email}`)
+      // console.log(`Create contact: ${email}`)
       this.$apollo.mutate({
         mutation: gql`mutation createContact($firstName: String!, $lastName: String!, $email: String!){
                 createContact(firstName: $firstName, lastName: $lastName, email: $email) {
@@ -111,7 +111,7 @@ export default {
           firstName: firstName,
           lastName: lastName,
           email: email
-        }
+        },
       }
       )
       //location.reload();
